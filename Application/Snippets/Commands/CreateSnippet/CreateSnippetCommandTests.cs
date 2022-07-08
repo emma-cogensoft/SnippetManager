@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq.Expressions;
 using AutoMoq;
 using Cogensoft.SnippetManager.Application.Interfaces;
@@ -8,6 +7,7 @@ using Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet.Facto
 using Cogensoft.SnippetManager.Common.Dates;
 using Cogensoft.SnippetManager.Common.Mocks;
 using Cogensoft.SnippetManager.Domain.Snippets;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
 
@@ -59,7 +59,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
         {
             _command.Execute(_model);
 
-            _mocker.GetMock<IDbSet<Snippet>>()
+            _mocker.GetMock<DbSet<Snippet>>()
                 .Verify(p => p.Add(_snippet),
                     Times.Once);
         }
@@ -86,26 +86,26 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
                     Times.Once);
         }
 
-        private void SetUpDbSet<T>(Expression<Func<IDatabaseService, IDbSet<T>>> property, T entity)
+        private void SetUpDbSet<T>(Expression<Func<IDatabaseService, DbSet<T>>> property, T entity)
             where T : class
         {
-            _mocker.GetMock<IDbSet<T>>()
+            _mocker.GetMock<DbSet<T>>()
                .SetUpDbSet(new List<T> { entity });
 
             _mocker.GetMock<IDatabaseService>()
                .Setup(property)
-               .Returns(_mocker.GetMock<IDbSet<T>>().Object);
+               .Returns(_mocker.GetMock<DbSet<T>>().Object);
         }
 
-        private void SetUpDbSet<T>(Expression<Func<IDatabaseService, IDbSet<T>>> property)
+        private void SetUpDbSet<T>(Expression<Func<IDatabaseService, DbSet<T>>> property)
            where T : class
         {
-            _mocker.GetMock<IDbSet<T>>()
+            _mocker.GetMock<DbSet<T>>()
                .SetUpDbSet(new List<T>());
 
             _mocker.GetMock<IDatabaseService>()
                .Setup(property)
-               .Returns(_mocker.GetMock<IDbSet<T>>().Object);
+               .Returns(_mocker.GetMock<DbSet<T>>().Object);
         }
     }
 }

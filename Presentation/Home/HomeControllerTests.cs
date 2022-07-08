@@ -1,5 +1,4 @@
-﻿using System.Web.Mvc;
-using AutoMoq;
+﻿using AutoMoq;
 using NUnit.Framework;
 
 namespace Cogensoft.SnippetManager.Presentation.Home
@@ -23,7 +22,7 @@ namespace Cogensoft.SnippetManager.Presentation.Home
         {
             var result = _controller.Index();
 
-            Assert.That(result, Is.TypeOf<ViewResult>());
+            Assert.That(result, Is.TypeOf<Microsoft.AspNetCore.Mvc.ViewResult>());
         }
     }
 }

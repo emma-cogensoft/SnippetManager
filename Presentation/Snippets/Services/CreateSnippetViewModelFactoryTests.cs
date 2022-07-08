@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMoq;
+﻿using AutoMoq;
 using NUnit.Framework;
 
 namespace Cogensoft.SnippetManager.Presentation.Snippets.Services

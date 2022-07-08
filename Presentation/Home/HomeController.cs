@@ -1,10 +1,8 @@
-﻿using System.Web.Mvc;
-
-namespace Cogensoft.SnippetManager.Presentation.Home
+﻿namespace Cogensoft.SnippetManager.Presentation.Home
 {
-    public class HomeController : Controller
+    public class HomeController : Microsoft.AspNetCore.Mvc.Controller
     {
-        public ViewResult Index()
+        public Microsoft.AspNetCore.Mvc.ViewResult Index()
         {
             return View();
         }

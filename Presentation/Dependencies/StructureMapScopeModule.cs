@@ -1,4 +1,3 @@
-using System.Web;
 using StructureMap.Web.Pipeline;
 
 namespace Cogensoft.SnippetManager.Presentation.Dependencies {

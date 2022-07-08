@@ -16,7 +16,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Web.Mvc;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
 using StructureMap.Pipeline;
@@ -27,7 +26,7 @@ namespace Cogensoft.SnippetManager.Presentation.Dependencies {
         #region Public Methods and Operators
 
         public void Process(Type type, Registry registry) {
-            if (type.CanBeCastTo<Controller>() && !type.IsAbstract) {
+            if (type.CanBeCastTo<Microsoft.AspNetCore.Mvc.Controller>() && !type.IsAbstract) {
                 registry.For(type).LifecycleIs(new UniquePerRequestLifecycle());
             }
         }

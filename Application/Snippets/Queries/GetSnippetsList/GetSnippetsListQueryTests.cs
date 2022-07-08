@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using AutoMoq;
 using Cogensoft.SnippetManager.Application.Interfaces;
 using Cogensoft.SnippetManager.Common.Mocks;
 using Cogensoft.SnippetManager.Domain.Snippets;
+using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 
 namespace Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetsList
@@ -41,12 +41,12 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetsList
         [Test]
         public void TestExecuteShouldReturnListOfSnippets()
         {
-            _mocker.GetMock<IDbSet<Snippet>>()
+            _mocker.GetMock<DbSet<Snippet>>()
                 .SetUpDbSet(new List<Snippet> { _snippet });
 
             _mocker.GetMock<IDatabaseService>()
                 .Setup(p => p.Snippets)
-                .Returns(_mocker.GetMock<IDbSet<Snippet>>().Object);
+                .Returns(_mocker.GetMock<DbSet<Snippet>>().Object);
 
             var results = _query.Execute();
 

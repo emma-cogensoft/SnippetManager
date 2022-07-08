@@ -1,14 +1,14 @@
-﻿using System.Web.Mvc;
-using Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet;
+﻿using Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet;
 using Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetDetail;
 using Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetsList;
 using Cogensoft.SnippetManager.Presentation.Snippets.Models;
 using Cogensoft.SnippetManager.Presentation.Snippets.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Cogensoft.SnippetManager.Presentation.Snippets
 {
     [RoutePrefix("snippets")]
-    public class SnippetsController : Controller
+    public class SnippetsController : Microsoft.AspNetCore.Mvc.Controller
     {
         private readonly IGetSnippetsListQuery _snippetsListQuery;
         private readonly IGetSnippetDetailQuery _snippetDetailQuery;
@@ -28,7 +28,7 @@ namespace Cogensoft.SnippetManager.Presentation.Snippets
         }
 
         [Route("")]
-        public ViewResult Index()
+        public Microsoft.AspNetCore.Mvc.ViewResult Index()
         {
             var snippets = _snippetsListQuery.Execute();
 
@@ -36,7 +36,7 @@ namespace Cogensoft.SnippetManager.Presentation.Snippets
         }
 
         [Route("{id:int}")]
-        public ViewResult Detail(int id)
+        public Microsoft.AspNetCore.Mvc.ViewResult Detail(int id)
         {
             var snippet = _snippetDetailQuery.Execute(id);
 
@@ -44,7 +44,7 @@ namespace Cogensoft.SnippetManager.Presentation.Snippets
         }
 
         [Route("create")]
-        public ViewResult Create()
+        public Microsoft.AspNetCore.Mvc.ViewResult Create()
         {
             var viewModel = _factory.Create();
 

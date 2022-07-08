@@ -2,15 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using Cogensoft.SnippetManager.Domain.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cogensoft.SnippetManager.Specification.Common
 {
     public class InMemoryDbSet<T> 
-        : IDbSet<T> where T : class
+        : DbSet<T> where T : class
     {
         private readonly HashSet<T> _set;
         private readonly IQueryable<T> _queryableSet;

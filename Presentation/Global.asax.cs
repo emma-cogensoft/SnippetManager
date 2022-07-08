@@ -1,7 +1,4 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace Cogensoft.SnippetManager.Presentation
+﻿namespace Cogensoft.SnippetManager.Presentation
 {
     public class MvcApplication : System.Web.HttpApplication
     {

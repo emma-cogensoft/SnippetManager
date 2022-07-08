@@ -18,7 +18,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
@@ -63,10 +62,10 @@ namespace Cogensoft.SnippetManager.Presentation.Dependencies {
 
         private HttpContextBase HttpContext {
             get {
-                return (System.Web.HttpContext.Current == null
+                return (HttpContextHelper.Current == null
                     ? null
                     : (Container.TryGetInstance<HttpContextBase>() ??
-                        new HttpContextWrapper(System.Web.HttpContext.Current)));
+                        new HttpContextWrapper(HttpContextHelper.Current)));
             }
         }
 

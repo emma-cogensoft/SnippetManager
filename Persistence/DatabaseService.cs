@@ -1,29 +1,31 @@
-﻿using System.Data.Entity;
+﻿using System.Reflection;
 using Cogensoft.SnippetManager.Application.Interfaces;
 using Cogensoft.SnippetManager.Domain.Snippets;
-using Cogensoft.SnippetManager.Persistence.Snippets;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cogensoft.SnippetManager.Persistence
 {
     public class DatabaseService : DbContext, IDatabaseService
     {
-        public IDbSet<Snippet> Snippets { get; set; }
+        public DbSet<Snippet> Snippets { get; set; }
+        
+        public DatabaseService() : base(){}
 
-        public DatabaseService() : base("SnippetManager")
+        public DatabaseService(DbContextOptions<DatabaseService> options)
+            : base(options)
         {
-            Database.SetInitializer(new DatabaseInitializer());
         }
 
         public void Save()
         {
-            this.SaveChanges();
+            SaveChanges();
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Configurations.Add(new SnippetConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

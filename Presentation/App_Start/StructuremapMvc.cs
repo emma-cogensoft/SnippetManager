@@ -15,7 +15,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Web.Mvc;
 using Cogensoft.SnippetManager.Presentation;
 using Cogensoft.SnippetManager.Presentation.Dependencies;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
