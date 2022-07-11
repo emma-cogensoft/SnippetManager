@@ -1,7 +1,7 @@
 ﻿using Moq.AutoMock;
-using NUnit.Framework;
+using Presentation.Services.Snippets;
 
-namespace Presentation.Services.Snippets
+namespace PresentationTests.Services.Snippets
 {
     [TestFixture]
     public class CreateSnippetViewModelFactoryTests
