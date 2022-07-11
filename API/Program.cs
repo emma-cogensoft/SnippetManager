@@ -1,7 +1,7 @@
 using Cogensoft.SnippetManager.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Api;
+namespace API;
 
 public static class Program
 {

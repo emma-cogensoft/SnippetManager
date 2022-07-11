@@ -1,7 +1,7 @@
 ﻿using System;
-using AutoMoq;
 using Cogensoft.SnippetManager.Infrastructure.Network;
 using Moq;
+using Moq.AutoMock;
 using NUnit.Framework;
 
 namespace Cogensoft.SnippetManager.Infrastructure.Notifications
@@ -10,7 +10,7 @@ namespace Cogensoft.SnippetManager.Infrastructure.Notifications
     public class NotificationServiceTests
     {
         private NotificationService _service;
-        private AutoMoqer _mocker;
+        private AutoMocker _mocker;
 
         private const string Address = "http://abc123.com/notification/snippets/1/notifysnippetcreated/";
         private const string Json = "{\"Description\": 2}";
@@ -18,9 +18,9 @@ namespace Cogensoft.SnippetManager.Infrastructure.Notifications
         [SetUp]
         public void SetUp()
         {
-            _mocker = new AutoMoqer();
+            _mocker = new AutoMocker();
 
-            _service = _mocker.Create<NotificationService>();
+            _service = _mocker.CreateInstance<NotificationService>();
         }
 
         [Test]

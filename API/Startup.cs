@@ -9,7 +9,7 @@ using Cogensoft.SnippetManager.Infrastructure.Notifications;
 using Cogensoft.SnippetManager.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Api;
+namespace API;
 
 public class Startup
 {

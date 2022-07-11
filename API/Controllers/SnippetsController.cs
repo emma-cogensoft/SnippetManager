@@ -5,7 +5,7 @@ using Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetsList;
 using Cogensoft.SnippetManager.Domain.Snippets;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers
+namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

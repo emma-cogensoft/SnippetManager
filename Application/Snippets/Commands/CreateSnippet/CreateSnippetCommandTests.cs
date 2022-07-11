@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using AutoMoq;
 using Cogensoft.SnippetManager.Application.Interfaces;
 using Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet.Factory;
 using Cogensoft.SnippetManager.Common.Dates;
@@ -9,6 +8,7 @@ using Cogensoft.SnippetManager.Common.Mocks;
 using Cogensoft.SnippetManager.Domain.Snippets;
 using Microsoft.EntityFrameworkCore;
 using Moq;
+using Moq.AutoMock;
 using NUnit.Framework;
 
 namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
@@ -17,7 +17,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
     public class CreateSnippetCommandTests
     {
         private CreateSnippetCommand _command;
-        private AutoMoqer _mocker;
+        private AutoMocker _mocker;
         private CreateSnippetModel _model;
         private Snippet _snippet;
 
@@ -36,7 +36,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
 
             _snippet = new Snippet();
             
-            _mocker = new AutoMoqer();
+            _mocker = new AutoMocker();
 
             _mocker.GetMock<IDateService>()
                 .Setup(p => p.GetDate())
@@ -51,7 +51,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
                     SnippetBody))
                 .Returns(_snippet);
             
-            _command = _mocker.Create<CreateSnippetCommand>();
+            _command = _mocker.CreateInstance<CreateSnippetCommand>();
         }
 
         [Test]

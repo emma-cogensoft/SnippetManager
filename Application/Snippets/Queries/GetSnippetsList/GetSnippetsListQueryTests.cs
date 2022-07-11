@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMoq;
 using Cogensoft.SnippetManager.Application.Interfaces;
 using Cogensoft.SnippetManager.Common.Mocks;
 using Cogensoft.SnippetManager.Domain.Snippets;
 using Microsoft.EntityFrameworkCore;
+using Moq.AutoMock;
 using NUnit.Framework;
 
 namespace Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetsList
@@ -14,7 +14,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetsList
     public class GetSnippetsListQueryTests
     {
         private GetSnippetsListQuery _query;
-        private AutoMoqer _mocker;
+        private AutoMocker _mocker;
         private Snippet _snippet;
 
         private const int SnippetId = 1;
@@ -33,9 +33,9 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetsList
                 SnippetBody = SnippetBody
             };
 
-            _mocker = new AutoMoqer();
+            _mocker = new AutoMocker();
 
-            _query = _mocker.Create<GetSnippetsListQuery>();
+            _query = _mocker.CreateInstance<GetSnippetsListQuery>();
         }
 
         [Test]
