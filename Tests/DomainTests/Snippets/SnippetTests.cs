@@ -1,7 +1,6 @@
-﻿using System;
-using NUnit.Framework;
+﻿using Cogensoft.SnippetManager.Domain.Snippets;
 
-namespace Cogensoft.SnippetManager.Domain.Snippets
+namespace DomainTests.Snippets
 {
     [TestFixture]
     public class SnippetTests
