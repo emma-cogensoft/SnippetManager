@@ -36,7 +36,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
 
             _database.Save();
 
-            _notificationService.NotifySnippetCreated(snippet.Description, snippet.Date);
+            _notificationService.NotifySnippetCreated(snippet.Id, snippet.Description);
         }
     }
 }

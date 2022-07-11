@@ -19,6 +19,7 @@ namespace ApplicationTests.Snippets.Commands.CreateSnippet
         private CreateSnippetModel _model;
         private Snippet _snippet;
 
+        private const int Id = 1;
         private static readonly DateTime Date = new DateTime(2022, 2, 3);
         private const string Description = "Snippet description";
         private const string SnippetBody = "Snippet body";
@@ -83,8 +84,8 @@ namespace ApplicationTests.Snippets.Commands.CreateSnippet
         
             _mocker.GetMock<INotificationService>()
                 .Verify(p => p.NotifySnippetCreated(
-                        Description,
-                        Date),
+                        Id,
+                        Description),
                     Times.Once);
         }
 

@@ -22,6 +22,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
         private Snippet _snippet;
 
         private static readonly DateTime Date = new DateTime(2022, 2, 3);
+        private const int Id = 1;
         private const string Description = "Snippet description";
         private const string SnippetBody = "Snippet body";
 
@@ -81,20 +82,9 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
         
             _mocker.GetMock<INotificationService>()
                 .Verify(p => p.NotifySnippetCreated(
-                        Description,
-                        new DateTime()),
+                        Id,
+                        Description),
                     Times.Once);
-        }
-
-        private void SetUpDbSet<T>(Expression<Func<IDatabaseService, DbSet<T>>> property, T entity)
-            where T : class
-        {
-            _mocker.GetMock<DbSet<T>>()
-               .SetUpDbSet(new List<T> { entity });
-
-            _mocker.GetMock<IDatabaseService>()
-               .Setup(property)
-               .Returns(_mocker.GetMock<DbSet<T>>().Object);
         }
 
         private void SetUpDbSet<T>(Expression<Func<IDatabaseService, DbSet<T>>> property)

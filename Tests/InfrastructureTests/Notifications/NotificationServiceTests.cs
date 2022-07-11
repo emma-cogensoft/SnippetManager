@@ -1,10 +1,9 @@
-﻿using System;
-using Cogensoft.SnippetManager.Infrastructure.Network;
+﻿using Cogensoft.SnippetManager.Infrastructure.Network;
+using Cogensoft.SnippetManager.Infrastructure.Notifications;
 using Moq;
 using Moq.AutoMock;
-using NUnit.Framework;
 
-namespace Cogensoft.SnippetManager.Infrastructure.Notifications
+namespace InfrastructureTests.Notifications
 {
     [TestFixture]
     public class NotificationServiceTests
@@ -13,7 +12,7 @@ namespace Cogensoft.SnippetManager.Infrastructure.Notifications
         private AutoMocker _mocker;
 
         private const string Address = "http://abc123.com/notification/snippets/1/notifysnippetcreated/";
-        private const string Json = "{\"Description\": 2}";
+        private const string Json = "{\"snippet\": \"Snippet description\"}";
 
         [SetUp]
         public void SetUp()
@@ -26,7 +25,7 @@ namespace Cogensoft.SnippetManager.Infrastructure.Notifications
         [Test]
         public void TestNotifySnippetCreatedShouldNotifyNotificationSystem()
         {
-            _service.NotifySnippetCreated("Snippet description", new DateTime());
+            _service.NotifySnippetCreated(1, "Snippet description");
 
             _mocker.GetMock<IWebClientWrapper>()
                 .Verify(p => p.Post(Address, Json),
