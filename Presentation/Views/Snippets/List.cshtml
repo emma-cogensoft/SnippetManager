@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetsList.SnippetsListItemModel>
+
+@{
+    ViewBag.Title = "Snippets";
+}
+
+<h2>Snippets</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var snippet in Model)
+        {
+            <tr>
+                <td><a asp-area="" asp-controller="Snippets" asp-action="Detail" asp-route-id="@snippet.Id">@snippet.Id</a></td>
+                <td>@snippet.Date.ToString("d")</td>
+                <td>@snippet.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="pull-right">
+    <a class="btn btn-primary" asp-area="" asp-controller="Snippets" asp-action="Create">Create Snippet</a>
+</div>
+

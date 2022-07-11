@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using AutoMoq;
 using Cogensoft.SnippetManager.Application.Interfaces;
 using Cogensoft.SnippetManager.Common.Mocks;
 using Cogensoft.SnippetManager.Domain.Snippets;
+using Microsoft.EntityFrameworkCore;
+using Moq.AutoMock;
 using NUnit.Framework;
 
 namespace Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetDetail
@@ -13,7 +13,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetDetail
     public class GetSnippetDetailQueryTests
     {
         private GetSnippetDetailQuery _query;
-        private AutoMoqer _mocker;
+        private AutoMocker _mocker;
         private Snippet _snippet;
 
         private const int SnippetId = 1;
@@ -32,20 +32,20 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Queries.GetSnippetDetail
                 SnippetBody = SnippetBody
             };
 
-            _mocker = new AutoMoqer();
+            _mocker = new AutoMocker();
 
-            _query = _mocker.Create<GetSnippetDetailQuery>();
+            _query = _mocker.CreateInstance<GetSnippetDetailQuery>();
         }
 
         [Test]
         public void TestExecuteShouldReturnSnippetDetail()
         {
-            _mocker.GetMock<IDbSet<Snippet>>()
+            _mocker.GetMock<DbSet<Snippet>>()
                 .SetUpDbSet(new List<Snippet> {_snippet });
 
             _mocker.GetMock<IDatabaseService>()
                 .Setup(p => p.Snippets)
-                .Returns(_mocker.GetMock<IDbSet<Snippet>>().Object);
+                .Returns(_mocker.GetMock<DbSet<Snippet>>().Object);
 
             var result = _query.Execute(SnippetId);
 

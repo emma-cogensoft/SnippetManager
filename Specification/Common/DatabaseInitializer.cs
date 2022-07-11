@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Data.Entity;
+using System.Collections.Generic;
 using Cogensoft.SnippetManager.Application.Interfaces;
 using Cogensoft.SnippetManager.Domain.Snippets;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 
 namespace Cogensoft.SnippetManager.Specification.Common
@@ -31,7 +32,7 @@ namespace Cogensoft.SnippetManager.Specification.Common
         }
 
         private void CreateSnippet(
-            IDbSet<Snippet> snippets,
+            InMemoryDbSet<Snippet> snippets,
             int dateOffset,
             int id,
             string description,

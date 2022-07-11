@@ -1,22 +1,22 @@
-﻿using System.Data.Entity.ModelConfiguration;
-using Cogensoft.SnippetManager.Domain.Snippets;
+﻿using Cogensoft.SnippetManager.Domain.Snippets;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cogensoft.SnippetManager.Persistence.Snippets
 {
-    public class SnippetConfiguration
-           : EntityTypeConfiguration<Snippet>
+    public class SnippetConfiguration : IEntityTypeConfiguration<Snippet>
     {
-        public SnippetConfiguration()
+        public void Configure(EntityTypeBuilder<Snippet> builder)
         {
-            HasKey(p => p.Id);
+            builder.HasKey(p => p.Id);
 
-            Property(p => p.Date)
+            builder.Property(p => p.Date)
                 .IsRequired();
             
-            Property(p => p.Description)
+            builder.Property(p => p.Description)
                 .IsRequired();
             
-            Property(p => p.SnippetBody)
+            builder.Property(p => p.SnippetBody)
                 .IsRequired();
         }
     }

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq.Expressions;
-using AutoMoq;
 using Cogensoft.SnippetManager.Application.Interfaces;
 using Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet.Factory;
 using Cogensoft.SnippetManager.Common.Dates;
 using Cogensoft.SnippetManager.Common.Mocks;
 using Cogensoft.SnippetManager.Domain.Snippets;
+using Microsoft.EntityFrameworkCore;
 using Moq;
+using Moq.AutoMock;
 using NUnit.Framework;
 
 namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
@@ -17,11 +17,12 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
     public class CreateSnippetCommandTests
     {
         private CreateSnippetCommand _command;
-        private AutoMoqer _mocker;
+        private AutoMocker _mocker;
         private CreateSnippetModel _model;
         private Snippet _snippet;
 
         private static readonly DateTime Date = new DateTime(2022, 2, 3);
+        private const int Id = 1;
         private const string Description = "Snippet description";
         private const string SnippetBody = "Snippet body";
 
@@ -36,7 +37,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
 
             _snippet = new Snippet();
             
-            _mocker = new AutoMoqer();
+            _mocker = new AutoMocker();
 
             _mocker.GetMock<IDateService>()
                 .Setup(p => p.GetDate())
@@ -51,7 +52,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
                     SnippetBody))
                 .Returns(_snippet);
             
-            _command = _mocker.Create<CreateSnippetCommand>();
+            _command = _mocker.CreateInstance<CreateSnippetCommand>();
         }
 
         [Test]
@@ -59,7 +60,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
         {
             _command.Execute(_model);
 
-            _mocker.GetMock<IDbSet<Snippet>>()
+            _mocker.GetMock<DbSet<Snippet>>()
                 .Verify(p => p.Add(_snippet),
                     Times.Once);
         }
@@ -81,31 +82,20 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
         
             _mocker.GetMock<INotificationService>()
                 .Verify(p => p.NotifySnippetCreated(
-                        Description,
-                        new DateTime()),
+                        Id,
+                        Description),
                     Times.Once);
         }
 
-        private void SetUpDbSet<T>(Expression<Func<IDatabaseService, IDbSet<T>>> property, T entity)
-            where T : class
-        {
-            _mocker.GetMock<IDbSet<T>>()
-               .SetUpDbSet(new List<T> { entity });
-
-            _mocker.GetMock<IDatabaseService>()
-               .Setup(property)
-               .Returns(_mocker.GetMock<IDbSet<T>>().Object);
-        }
-
-        private void SetUpDbSet<T>(Expression<Func<IDatabaseService, IDbSet<T>>> property)
+        private void SetUpDbSet<T>(Expression<Func<IDatabaseService, DbSet<T>>> property)
            where T : class
         {
-            _mocker.GetMock<IDbSet<T>>()
+            _mocker.GetMock<DbSet<T>>()
                .SetUpDbSet(new List<T>());
 
             _mocker.GetMock<IDatabaseService>()
                .Setup(property)
-               .Returns(_mocker.GetMock<IDbSet<T>>().Object);
+               .Returns(_mocker.GetMock<DbSet<T>>().Object);
         }
     }
 }
