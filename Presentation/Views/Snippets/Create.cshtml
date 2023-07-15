@@ -18,5 +18,6 @@
                     @Html.TextAreaFor(p => p.Snippet!.SnippetBody, new { @class = "form-control" })
                 </div>
         <button type="submit" class="btn btn-primary">Create</button>
+        @Html.AntiForgeryToken()
     </form>
 }

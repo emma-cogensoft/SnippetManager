@@ -48,6 +48,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateSnippetViewModel? viewModel)
         {
             var model = viewModel!.Snippet;            
