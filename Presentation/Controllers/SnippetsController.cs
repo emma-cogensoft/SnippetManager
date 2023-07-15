@@ -48,11 +48,11 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CreateSnippetViewModel? viewModel)
+        public async Task<IActionResult> Create(CreateSnippetViewModel? viewModel)
         {
             var model = viewModel!.Snippet;            
 
-            _createCommand.Execute(model);
+            await _createCommand.ExecuteAsync(model);
 
             return RedirectToAction("List", "Snippets");
         }

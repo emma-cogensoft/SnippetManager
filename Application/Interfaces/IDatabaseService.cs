@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Cogensoft.SnippetManager.Domain.Snippets;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,6 @@ namespace Cogensoft.SnippetManager.Application.Interfaces
     {
         DbSet<Snippet> Snippets { get; set; }
 
-        void Save();
+        Task SaveAsync();
     }
 }

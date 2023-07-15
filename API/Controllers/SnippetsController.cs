@@ -50,7 +50,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Snippet>> PostSnippet(CreateSnippetModel model)
         {
-            _createCommand.Execute(model);
+            await _createCommand.ExecuteAsync(model);
             return Ok();
         }
     }

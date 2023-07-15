@@ -1,7 +1,9 @@
-﻿namespace Cogensoft.SnippetManager.Infrastructure.Network
+﻿using System.Threading.Tasks;
+
+namespace Cogensoft.SnippetManager.Infrastructure.Network
 {
     public interface IWebClientWrapper
     {
-        void Post(string address, string json);
+        Task PostAsync(string address, string json);
     }
 }
