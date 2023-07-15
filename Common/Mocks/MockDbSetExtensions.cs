@@ -64,9 +64,9 @@ namespace Cogensoft.SnippetManager.Common.Mocks
                 var expectedResultType = typeof(TResult).GetGenericArguments()[0];
                 var executionResult = typeof(IQueryProvider)
                     .GetMethod(name: nameof(IQueryProvider.Execute), genericParameterCount: 1,
-                        types: new[] { typeof(Expression) })
+                        types: new[] { typeof(Expression) })!
                     .MakeGenericMethod(expectedResultType)
-                    .Invoke(this, new[] { expression });
+                    .Invoke(this, new object[] { expression });
 
                 return (TResult)typeof(Task)
                     .GetMethod(nameof(Task.FromResult))
@@ -78,10 +78,6 @@ namespace Cogensoft.SnippetManager.Common.Mocks
         private class MockAsyncEnumerable<T> : EnumerableQuery<T>, IAsyncEnumerable<T>, IQueryable<T>
         {
             IQueryProvider IQueryable.Provider => new MockAsyncQueryProvider<T>(this);
-
-            public MockAsyncEnumerable(IEnumerable<T> enumerable) : base(enumerable)
-            {
-            }
 
             public MockAsyncEnumerable(Expression expression) : base(expression)
             {

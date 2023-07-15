@@ -5,11 +5,6 @@ namespace Presentation.Services.Snippets
 {
     public class CreateSnippetViewModelFactory : ICreateSnippetViewModelFactory
     {
-
-        public CreateSnippetViewModelFactory()
-        {
-        }
-
         public CreateSnippetViewModel Create()
         {
             var viewModel = new CreateSnippetViewModel

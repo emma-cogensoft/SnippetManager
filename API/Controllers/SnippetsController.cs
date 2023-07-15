@@ -33,7 +33,7 @@ namespace API.Controllers
         }
 
         // GET: api/Snippets/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public ActionResult<Snippet> GetSnippet(int id)
         {
             try
