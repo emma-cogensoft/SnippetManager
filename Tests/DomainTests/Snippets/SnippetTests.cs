@@ -5,7 +5,7 @@ namespace DomainTests.Snippets
     [TestFixture]
     public class SnippetTests
     {
-        private Snippet _snippet;
+        private Snippet _snippet = null!;
 
         private const int Id = 1;
         private static readonly DateTime Date = new DateTime(2022, 2, 3);

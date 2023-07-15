@@ -6,8 +6,8 @@ namespace PresentationTests.Services.Snippets
     [TestFixture]
     public class CreateSnippetViewModelFactoryTests
     {
-        private CreateSnippetViewModelFactory _factory;
-        private AutoMocker _mocker;
+        private CreateSnippetViewModelFactory _factory = null!;
+        private AutoMocker _mocker = null!;
         
         [SetUp]
         public void SetUp()

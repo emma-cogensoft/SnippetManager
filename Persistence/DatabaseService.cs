@@ -10,7 +10,7 @@ namespace Cogensoft.SnippetManager.Persistence
     {
         public DbSet<Snippet> Snippets { get; set; }
         
-        public DatabaseService() : base(){}
+        public DatabaseService() {}
 
         public DatabaseService(DbContextOptions<DatabaseService> options)
             : base(options)

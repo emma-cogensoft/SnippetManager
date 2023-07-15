@@ -5,7 +5,7 @@ namespace ApplicationTests.Snippets.Commands.CreateSnippet.Factory
     [TestFixture]
     public class SnippetFactoryTests
     {
-        private SnippetFactory _factory;
+        private SnippetFactory _factory = null!;
 
         private static readonly DateTime DateTime = new DateTime(2022, 2, 3);
         private const string Description = "Snippet description";

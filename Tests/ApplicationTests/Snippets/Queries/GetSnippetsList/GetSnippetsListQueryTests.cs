@@ -10,9 +10,9 @@ namespace ApplicationTests.Snippets.Queries.GetSnippetsList
     [TestFixture]
     public class GetSnippetsListQueryTests
     {
-        private GetSnippetsListQuery _query;
-        private AutoMocker _mocker;
-        private Snippet _snippet;
+        private GetSnippetsListQuery _query = null!;
+        private AutoMocker _mocker = null!;
+        private Snippet _snippet = null!;
 
         private const int SnippetId = 1;
         private static readonly DateTime Date = new DateTime(2001, 2, 3);

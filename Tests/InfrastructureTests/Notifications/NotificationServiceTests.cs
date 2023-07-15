@@ -8,8 +8,8 @@ namespace InfrastructureTests.Notifications
     [TestFixture]
     public class NotificationServiceTests
     {
-        private NotificationService _service;
-        private AutoMocker _mocker;
+        private NotificationService _service = null!;
+        private AutoMocker _mocker = null!;
 
         private const string Address = "http://abc123.com/notification/snippets/1/notifysnippetcreated/";
         private const string Json = "{\"snippet\": \"Snippet description\"}";
