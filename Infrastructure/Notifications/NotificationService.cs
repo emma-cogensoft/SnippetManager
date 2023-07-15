@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Cogensoft.SnippetManager.Application.Interfaces;
 using Cogensoft.SnippetManager.Infrastructure.Network;
 
@@ -17,14 +18,14 @@ namespace Cogensoft.SnippetManager.Infrastructure.Notifications
             _client = client;
         }
 
-        public void NotifySnippetCreated(int snippetId, string description)
+        public async Task NotifySnippetCreatedAsync(int snippetId, string description)
         {
             Console.WriteLine($"Snippet created: {description} {snippetId}");
             
             var address = string.Format(SnippetTemplate, snippetId);
             var json = string.Format(JsonTemplate, description);
 
-            _client.Post(address, json);
+            await _client.PostAsync(address, json);
         }
     }
 }

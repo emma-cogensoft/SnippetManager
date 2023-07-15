@@ -1,7 +1,9 @@
-﻿namespace Cogensoft.SnippetManager.Application.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace Cogensoft.SnippetManager.Application.Interfaces
 {
     public interface INotificationService
     {
-        void NotifySnippetCreated(int snippetId, string description);
+        Task NotifySnippetCreatedAsync(int snippetId, string description);
     }
 }

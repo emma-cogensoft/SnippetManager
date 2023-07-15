@@ -23,12 +23,12 @@ namespace InfrastructureTests.Notifications
         }
 
         [Test]
-        public void TestNotifySnippetCreatedShouldNotifyNotificationSystem()
+        public async Task TestNotifySnippetCreatedShouldNotifyNotificationSystem()
         {
-            _service.NotifySnippetCreated(1, "Snippet description");
+            await _service.NotifySnippetCreatedAsync(1, "Snippet description");
 
             _mocker.GetMock<IWebClientWrapper>()
-                .Verify(p => p.Post(Address, Json),
+                .Verify(p => p.PostAsync(Address, Json),
                     Times.Once);
         }
     }

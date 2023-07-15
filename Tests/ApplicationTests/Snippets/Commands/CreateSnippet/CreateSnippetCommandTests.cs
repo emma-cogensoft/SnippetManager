@@ -14,10 +14,10 @@ namespace ApplicationTests.Snippets.Commands.CreateSnippet
     [TestFixture]
     public class CreateSnippetCommandTests
     {
-        private CreateSnippetCommand _command;
-        private AutoMocker _mocker;
-        private CreateSnippetModel _model;
-        private Snippet _snippet;
+        private CreateSnippetCommand _command = null!;
+        private AutoMocker _mocker = null!;
+        private CreateSnippetModel _model = null!;
+        private Snippet _snippet = null!;
 
         private const int Id = 1;
         private static readonly DateTime Date = new DateTime(2022, 2, 3);
@@ -58,9 +58,9 @@ namespace ApplicationTests.Snippets.Commands.CreateSnippet
         }
 
         [Test]
-        public void TestExecuteShouldAddSnippetToTheDatabase()
+        public async Task TestExecuteShouldAddSnippetToTheDatabase()
         {
-            _command.Execute(_model);
+            await _command.ExecuteAsync(_model);
 
             _mocker.GetMock<DbSet<Snippet>>()
                 .Verify(p => p.Add(_snippet),
@@ -68,22 +68,22 @@ namespace ApplicationTests.Snippets.Commands.CreateSnippet
         }
 
         [Test]
-        public void TestExecuteShouldSaveChangesToDatabase()
+        public async Task TestExecuteShouldSaveChangesToDatabase()
         {
-            _command.Execute(_model);
+            await _command.ExecuteAsync(_model);
 
             _mocker.GetMock<IDatabaseService>()
-                .Verify(p => p.Save(),
+                .Verify(p => p.SaveAsync(),
                     Times.Once);
         }
         
         [Test]
-        public void TestExecuteShouldNotifyThatSnippetOccurred()
+        public async Task TestExecuteShouldNotifyThatSnippetOccurred()
         {
-            _command.Execute(_model);
+            await _command.ExecuteAsync(_model);
         
             _mocker.GetMock<INotificationService>()
-                .Verify(p => p.NotifySnippetCreated(
+                .Verify(p => p.NotifySnippetCreatedAsync(
                         Id,
                         Description),
                     Times.Once);

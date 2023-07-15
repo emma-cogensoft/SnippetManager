@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Threading.Tasks;
 using Cogensoft.SnippetManager.Application.Interfaces;
 using Cogensoft.SnippetManager.Domain.Snippets;
 using Microsoft.EntityFrameworkCore;
@@ -16,9 +17,9 @@ namespace Cogensoft.SnippetManager.Persistence
         {
         }
 
-        public void Save()
+        public async Task SaveAsync()
         {
-            SaveChanges();
+            await SaveChangesAsync();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

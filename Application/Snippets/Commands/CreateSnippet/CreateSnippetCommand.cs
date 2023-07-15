@@ -1,4 +1,5 @@
-﻿using Cogensoft.SnippetManager.Application.Interfaces;
+﻿using System.Threading.Tasks;
+using Cogensoft.SnippetManager.Application.Interfaces;
 using Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet.Factory;
 using Cogensoft.SnippetManager.Common.Dates;
 
@@ -24,7 +25,7 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
             _notificationService = notificationService;
         }
 
-        public void Execute(CreateSnippetModel model)
+        public async Task ExecuteAsync(CreateSnippetModel model)
         {
             var date = _dateService.GetDate();
 
@@ -34,9 +35,9 @@ namespace Cogensoft.SnippetManager.Application.Snippets.Commands.CreateSnippet
 
             _database.Snippets.Add(snippet);
 
-            _database.Save();
+            await _database.SaveAsync();
 
-            _notificationService.NotifySnippetCreated(snippet.Id, snippet.Description);
+            await _notificationService.NotifySnippetCreatedAsync(snippet.Id, snippet.Description);
         }
     }
 }
