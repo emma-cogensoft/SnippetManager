@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Cogensoft.SnippetManager.Application.Interfaces;
+﻿using Cogensoft.SnippetManager.Application.Interfaces;
 
 namespace Cogensoft.SnippetManager.Specification.Common
 {

@@ -1,126 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F06A236E-E5C1-48E5-89F1-91B40FD8FFF6}</ProjectGuid>
+    <TargetFramework>net6.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cogensoft.SnippetManager.Application</RootNamespace>
     <AssemblyName>Cogensoft.SnippetManager.Application</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <LangVersion>10</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMoq">
-      <HintPath>..\packages\AutoMoq.1.6.2.0\lib\net35\AutoMoq.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration">
-      <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception">
-      <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.Unity.Interception.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
-      <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap.Net4">
-      <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.Net4.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap.Web">
-      <HintPath>..\packages\structuremap.web.3.1.0.133\lib\net40\StructureMap.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IDatabaseService.cs" />
-    <Compile Include="Interfaces\IInventoryService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Snippets\Commands\CreateSnippet\CreateSnippetCommand.cs" />
-    <Compile Include="Snippets\Commands\CreateSnippet\CreateSnippetCommandTests.cs" />
-    <Compile Include="Snippets\Commands\CreateSnippet\CreateSnippetModel.cs" />
-    <Compile Include="Snippets\Commands\CreateSnippet\ICreateSnippetCommand.cs" />
-    <Compile Include="Snippets\Commands\CreateSnippet\Factory\ISnippetFactory.cs" />
-    <Compile Include="Snippets\Commands\CreateSnippet\Factory\SnippetFactory.cs" />
-    <Compile Include="Snippets\Commands\CreateSnippet\Factory\SnippetFactoryTests.cs" />
-    <Compile Include="Snippets\Queries\GetSnippetDetail\GetSnippetDetailQueryTests.cs" />
-    <Compile Include="Snippets\Queries\GetSnippetDetail\IGetSnippetDetailQuery.cs" />
-    <Compile Include="Snippets\Queries\GetSnippetDetail\SnippetDetailModel.cs" />
-    <Compile Include="Snippets\Queries\GetSnippetDetail\GetSnippetDetailQuery.cs" />
-    <Compile Include="Snippets\Queries\GetSnippetsList\GetSnippetsListQueryTests.cs" />
-    <Compile Include="Snippets\Queries\GetSnippetsList\GetSnippetsListQuery.cs" />
-    <Compile Include="Snippets\Queries\GetSnippetsList\IGetSnippetsListQuery.cs" />
-    <Compile Include="Snippets\Queries\GetSnippetsList\SnippetsListItemModel.cs" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
+    <PackageReference Include="Moq.AutoMock" Version="3.4.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit.ConsoleRunner" Version="3.15.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="Moq" Version="4.18.1" />
+    <PackageReference Include="structuremap" Version="4.7.1" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{d7ce4d23-9d31-4d46-a250-2a6fa76e6cea}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{deffffe8-dc5b-42f4-beb0-94920fda7712}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
